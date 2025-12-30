@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#ff6a00" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>duduivhub — Travel & Tours</title>
+  <meta name="description" content="duduivhub — Explore packages across Tamil Nadu and Kerala. Enquire now and book it!" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <img src="logo.png" alt="DuduIVHub" class="brand-logo" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="package.html" class="nav-link">PACKAGE</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME / HERO -->
+    <section class="section hero" id="home" aria-label="Home">
+      <div id="heroBgA" aria-hidden="true"></div>
+      <div id="heroBgB" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <button id="heroPrev" class="hero-ctrl" aria-label="Previous image" title="Previous" type="button">‹</button>
+      <button id="heroNext" class="hero-ctrl" aria-label="Next image" title="Next" type="button">›</button>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <h1 class="hero-title">Discover Travel With <span class="accent">Dudu</span></h1>
+          <p class="hero-sub">Modern packages, curated stays, and seamless bookings across Tamil Nadu and Kerala.</p>
+          <div class="hero-cta">
+            <button id="openEnquire" class="btn btn-primary" type="button" data-open-enquire>Enquire Now</button>
+          </div>
+          <div class="hero-points">
+            <div class="point"><span class="dot"></span>Trusted travel guidance</div>
+            <div class="point"><span class="dot"></span>Hand-picked industrial visit experiences</div>
+            <div class="point"><span class="dot"></span>Here we will give all-in-one</div>
+            <div class="point"><span class="dot"></span>Support from enquiry to return</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enquire Section - Always Visible -->
+    <section class="enquire-section" id="enquire">
+      <div class="container">
+        <div class="enquire-wrapper">
+          <!-- Left Side: Contact Info -->
+          <div class="contact-info">
+            <div class="contact-card">
+              <h2 class="contact-title">Stay Connected</h2>
+              <div class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                </svg>
+                <a href="tel:+919940764517" class="contact-link">+91 9940764517</a>
+              </div>
+              <div class="contact-item">
+                <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <a href="mailto:duduivhub@gmail.com" class="contact-link">duduivhub@gmail.com</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Side: Enquiry Form -->
+          <div class="enquire-form-wrapper">
+            <form id="enquiryForm" class="enquire-form" novalidate>
+              <input type="hidden" name="_subject" value="New Booking Enquiry">
+              <input type="hidden" name="_template" value="table">
+              <input type="hidden" name="_captcha" value="false">
+              <input type="hidden" name="_next" value="https://duduivhub.com/thank-you">
+              <input type="hidden" name="_autoresponse" value="Thank you for your enquiry! We'll contact you shortly.">
+              <div class="form-field">
+                <label for="name">Name *</label>
+                <input id="name" name="name" type="text" required />
+              </div>
+
+              <div class="form-field">
+                <label for="city">Your Location *</label>
+                <input id="city" name="city" type="text" required />
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+
+              <div class="form-field">
+                <label for="phone">Phone Number *</label>
+                <div class="phone-input">
+                  <span class="country-code">🇮🇳 +91</span>
+                  <input id="phone" name="phone" type="tel" pattern="[0-9]{10}" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="whatsapp">WhatsApp *</label>
+                <div class="phone-input">
+                  <span class="country-code">🇮🇳 +91</span>
+                  <input id="whatsapp" name="whatsapp" type="tel" pattern="[0-9]{10}" required />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="destination">Travel Destination *</label>
+                <select id="destination" name="destination" required>
+                  <option value="">Select destination</option>
+                  <option value="tamilnadu">Tamil Nadu</option>
+                  <option value="kerala">Kerala</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="travelDate">Date of Travel *</label>
+                <input id="travelDate" name="travelDate" type="date" required />
+              </div>
+
+              <div class="form-field">
+                <label for="people">No. of People *</label>
+                <input id="people" name="people" type="number" min="1" required />
+              </div>
+
+              <div class="form-field captcha-field">
+                <label for="captchaInput">Captcha *</label>
+                <div class="captcha-container">
+                  <span class="captcha-question" id="captchaQuestion">0 + 0 = ?</span>
+                  <input id="captchaInput" name="captcha" type="text" required />
+                </div>
+              </div>
+
+              <button type="button" class="enquire-submit-btn" id="submitBtn">BOOK NOW</button>
+              
+              <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <div class="foot-brand">© <span id="year"></span> duduivhub</div>
+      
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/919940764517" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.59c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.41-.83-.74-1.39-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.83-2-.22-.53-.43-.46-.61-.46-.16 0-.34-.02-.52-.02s-.48.07-.73.34c-.25.28-.96.94-.96 2.29 0 1.35.98 2.66 1.12 2.84.14.18 1.93 2.94 4.68 4.14.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.2-.53-.34zM16.02 3.2c-6.99 0-12.67 5.68-12.67 12.67 0 2.23.59 4.33 1.63 6.14L3.2 28.8l7-1.8c1.75.96 3.75 1.51 5.88 1.51 6.99 0 12.67-5.68 12.67-12.67S23.01 3.2 16.02 3.2zm0 23.02c-2.1 0-4.05-.62-5.68-1.69l-.41-.26-4.15 1.07 1.11-4.05-.27-.42a10.67 10.67 0 01-1.65-5.76c0-5.9 4.8-10.69 10.69-10.69 5.9 0 10.69 4.8 10.69 10.69 0 5.9-4.8 10.69-10.69 10.69z"/></svg>
+  </a>
+
+</body>
+</html>

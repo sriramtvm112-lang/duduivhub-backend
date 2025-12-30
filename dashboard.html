@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — dudu</title>
+  <meta name="description" content="dudu dashboard overview." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body class="dashboard-on">
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="Dudu" class="brand-logo" />
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="package.html" class="nav-link">PACKAGE</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+      </nav>
+      <a class="btn btn-dashboard" href="dashboard.html" aria-current="page">Dashboard</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero" aria-label="Dashboard">
+      <div class="container">
+        <h1 class="hero-title">Welcome to the <span class="accent">Dashboard</span></h1>
+        <p class="hero-sub">A clean white workspace with quick actions.</p>
+        <div class="hero-cta">
+          <a href="package.html" class="btn btn-primary">View Packages</a>
+          <a href="contact.html" class="btn btn-outline">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Quick Links">
+      <div class="container">
+        <div class="region-grid">
+          <a class="region-card" href="index.html">
+            <div class="region-media tn"></div>
+            <div class="region-content">
+              <h3 class="region-title">Home</h3>
+              <p class="region-desc">Enquire Now and start booking.</p>
+            </div>
+          </a>
+          <a class="region-card" href="package.html">
+            <div class="region-media kl"></div>
+            <div class="region-content">
+              <h3 class="region-title">Packages</h3>
+              <p class="region-desc">Explore regions and cities.</p>
+            </div>
+          </a>
+          <a class="region-card" href="contact.html">
+            <div class="region-media tn"></div>
+            <div class="region-content">
+              <h3 class="region-title">Contact</h3>
+              <p class="region-desc">Email and phone support.</p>
+            </div>
+          </a>
+          <a class="region-card" href="about.html">
+            <div class="region-media kl"></div>
+            <div class="region-content">
+              <h3 class="region-title">About Us</h3>
+              <p class="region-desc">Our story and mission.</p>
+            </div>
+          </a>
+          <a class="region-card" href="tamilnadu.html">
+            <div class="region-media tn"></div>
+            <div class="region-content">
+              <h3 class="region-title">Tamil Nadu</h3>
+              <p class="region-desc">Cities and experiences.</p>
+            </div>
+          </a>
+          <a class="region-card" href="kerala.html">
+            <div class="region-media kl"></div>
+            <div class="region-content">
+              <h3 class="region-title">Kerala</h3>
+              <p class="region-desc">Backwaters and beaches.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <div class="foot-brand">© <span id="year"></span> dudu</div>
+      <nav class="foot-links" aria-label="Secondary">
+        <a href="index.html">Home</a>
+        <a href="package.html">Package</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>

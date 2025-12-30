@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kerala — duduivhub</title>
+  <meta name="description" content="Explore Kerala destinations with duduivhub." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <img src="logo.png" alt="DuduIVHub" class="brand-logo" />
+        <span class="brand-text">[IVHUB]</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="index.html" class="nav-link">HOME</a>
+        <a href="package.html" class="nav-link">PACKAGE</a>
+        <a href="contact.html" class="nav-link">CONTACT</a>
+        <a href="about.html" class="nav-link">ABOUT US</a>
+      </nav>
+      
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero" aria-label="Kerala Hero">
+      <div class="container">
+        <h1 class="hero-title">Kerala <span class="accent">Destinations</span></h1>
+        <p class="hero-sub">Backwaters, beaches, and greenery. Pick a city to plan your trip.</p>
+        <a href="package.html" class="btn btn-outline">← Back to Packages</a>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Kerala Destinations">
+      <div class="container">
+        <h2 class="section-title">Cities</h2>
+        <div class="city-grid">
+          <div class="city-card">
+            <div class="city-image" style="background-image: url('https://cdn.vectorstock.com/i/500p/56/78/kochi-india-city-skyline-with-color-buildings-vector-30025678.jpg');"></div>
+            <div class="city-info">
+              <h3 class="city-name">Kochi</h3>
+              <p class="city-desc">Queen of the Arabian Sea</p>
+              <button class="btn btn-primary" data-open-enquire>View Packages</button>
+            </div>
+          </div>
+          <div class="city-card">
+            <div class="city-image" style="background-image: url('https://i.pinimg.com/736x/49/20/72/492072eae3f72ddaf0b4f5beb9274919.jpg');"></div>
+            <div class="city-info">
+              <h3 class="city-name">Thiruvananthapuram</h3>
+              <p class="city-desc">Capital city with beaches</p>
+              <button class="btn btn-primary" data-open-enquire>View Packages</button>
+            </div>
+          </div>
+          <div class="city-card">
+            <div class="city-image" style="background-image: url('https://i.pinimg.com/1200x/42/cf/ee/42cfeeb997f5cc5c4b33cc32e37d2eea.jpg');"></div>
+            <div class="city-info">
+              <h3 class="city-name">Kozhikode</h3>
+              <p class="city-desc">Historic spice trading port</p>
+              <button class="btn btn-primary" data-open-enquire>View Packages</button>
+            </div>
+          </div>
+          <div class="city-card">
+            <div class="city-image" style="background-image: url('https://i.pinimg.com/736x/87/a4/15/87a415c18fadc737ec33434aca4b5d3f.jpg');"></div>
+            <div class="city-info">
+              <h3 class="city-name">Thrissur</h3>
+              <p class="city-desc">Cultural capital of Kerala</p>
+              <button class="btn btn-primary" data-open-enquire>View Packages</button>
+            </div>
+          </div>
+          <div class="city-card">
+            <div class="city-image" style="background-image: url('https://i.pinimg.com/736x/bc/fe/57/bcfe5774b22d4744ae016569a4b7185a.jpg');"></div>
+            <div class="city-info">
+              <h3 class="city-name">Kottayam</h3>
+              <p class="city-desc">Land of letters and latex</p>
+              <button class="btn btn-primary" data-open-enquire>View Packages</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container foot">
+      <div class="foot-brand">© <span id="year"></span> duduivhub</div>
+      <nav class="foot-links" aria-label="Secondary">
+        <a href="index.html">Home</a>
+        <a href="package.html">Package</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </footer>
+
+  <a class="whatsapp-fab" href="https://wa.me/919904764517" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.59c-.28-.14-1.64-.81-1.89-.9-.25-.09-.43-.14-.61.14-.18.28-.7.9-.86 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.44-2.25-1.41-.83-.74-1.39-1.66-1.56-1.94-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.83-2-.22-.53-.43-.46-.61-.46-.16 0-.34-.02-.52-.02s-.48.07-.73.34c-.25.28-.96.94-.96 2.29 0 1.35.98 2.66 1.12 2.84.14.18 1.93 2.94 4.68 4.14.65.28 1.16.45 1.56.58.65.21 1.24.18 1.71.11.52-.08 1.64-.67 1.87-1.31.23-.64.23-1.19.16-1.31-.07-.12-.25-.2-.53-.34zM16.02 3.2c-6.99 0-12.67 5.68-12.67 12.67 0 2.23.59 4.33 1.63 6.14L3.2 28.8l7-1.8c1.75.96 3.75 1.51 5.88 1.51 6.99 0 12.67-5.68 12.67-12.67S23.01 3.2 16.02 3.2zm0 23.02c-2.1 0-4.05-.62-5.68-1.69l-.41-.26-4.15 1.07 1.11-4.05-.27-.42a10.67 10.67 0 01-1.65-5.76c0-5.9 4.8-10.69 10.69-10.69 5.9 0 10.69 4.8 10.69 10.69 0 5.9-4.8 10.69-10.69 10.69z"/></svg>
+  </a>
+
+</body>
+</html>

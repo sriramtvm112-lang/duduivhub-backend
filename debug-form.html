@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 50px auto; padding: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input { width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { background: #007bff; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 10px; border-radius: 4px; }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .debug { background: #f8f9fa; padding: 10px; margin: 10px 0; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <h1>Debug Form Validation</h1>
+    
+    <form id="debugForm">
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="Test User" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" value="Chennai" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="test@example.com" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone1">Phone 1:</label>
+            <input type="tel" id="phone1" name="phone1" value="9940764517" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="phone2">Phone 2:</label>
+            <input type="tel" id="phone2" name="phone2" value="9876543210">
+        </div>
+        
+        <div class="form-group">
+            <label for="date">Travel Date:</label>
+            <input type="date" id="date" name="date" value="2024-12-25" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="captchaInput">Captcha: <span id="captchaQuestion">Loading...</span></label>
+            <input type="text" id="captchaInput" name="captcha" placeholder="Answer" required>
+        </div>
+        
+        <button type="submit">Test Validation</button>
+    </form>
+    
+    <div id="debugInfo" class="debug"></div>
+    <div id="result"></div>
+
+    <script>
+        let captchaAnswer = '';
+        
+        function generateCaptcha() {
+            const num1 = Math.floor(Math.random() * 10) + 1;
+            const num2 = Math.floor(Math.random() * 10) + 1;
+            captchaAnswer = String(num1 + num2);
+            document.getElementById('captchaQuestion').textContent = `${num1} + ${num2} = ?`;
+            document.getElementById('captchaInput').value = '';
+            console.log('Generated captcha:', captchaAnswer);
+        }
+        
+        function validateForm(data) {
+            console.log('Form data:', Array.from(data.entries()));
+            console.log('Captcha answer:', captchaAnswer);
+            
+            const required = ['name', 'location', 'email', 'phone1', 'date'];
+            for (const key of required) {
+                const value = data.get(key);
+                console.log(`Checking ${key}:`, value);
+                if (!value || String(value).trim() === '') {
+                    console.log(`Missing required field: ${key}`);
+                    return { ok: false, msg: `Please fill in all required fields. Missing: ${key}` };
+                }
+            }
+            
+            const email = String(data.get('email') || '');
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                return { ok: false, msg: 'Please enter a valid email address.' };
+            }
+            
+            const phone1 = String(data.get('phone1') || '');
+            if (!/^[0-9]{10}$/.test(phone1)) {
+                return { ok: false, msg: 'Please enter a valid 10-digit phone number.' };
+            }
+            
+            const phone2 = String(data.get('phone2') || '');
+            if (phone2 && !/^[0-9]{10}$/.test(phone2)) {
+                return { ok: false, msg: 'Please enter a valid 10-digit alternate phone number.' };
+            }
+            
+            const ans = String(data.get('captcha') || '').trim();
+            console.log('Captcha input:', ans);
+            if (!ans || ans !== String(captchaAnswer)) {
+                console.log('Captcha validation failed');
+                return { ok: false, msg: 'Captcha is incorrect. Please try again.' };
+            }
+            
+            console.log('Form validation passed');
+            return { ok: true };
+        }
+        
+        document.getElementById('debugForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const resultDiv = document.getElementById('result');
+            const debugDiv = document.getElementById('debugInfo');
+            
+            const formData = new FormData(this);
+            const res = validateForm(formData);
+            
+            debugDiv.innerHTML = `
+                <h3>Debug Info:</h3>
+                <p><strong>Form Data:</strong> ${JSON.stringify(Object.fromEntries(formData.entries()), null, 2)}</p>
+                <p><strong>Captcha Answer:</strong> ${captchaAnswer}</p>
+                <p><strong>Validation Result:</strong> ${res.ok ? 'PASS' : 'FAIL'}</p>
+                <p><strong>Message:</strong> ${res.msg}</p>
+            `;
+            
+            if (res.ok) {
+                resultDiv.innerHTML = `<div class="result success">${res.msg}</div>`;
+            } else {
+                resultDiv.innerHTML = `<div class="result error">${res.msg}</div>`;
+            }
+        });
+        
+        // Initialize captcha
+        generateCaptcha();
+    </script>
+</body>
+</html>
