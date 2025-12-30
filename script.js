@@ -327,8 +327,8 @@
 
       if (response.ok) {
         if (formNote) {
-          formNote.textContent = 'Thank you! Your enquiry has been submitted successfully.';
-          formNote.style.color = '#065f46';
+          formNote.textContent = 'Fallback submission completed. Please check your email for confirmation.';
+          formNote.style.color = '#6b7280';
         }
         form.reset();
         generateCaptcha();
@@ -339,10 +339,13 @@
           submitBtn.disabled = false;
           submitBtn.textContent = 'BOOK NOW';
         }
-        
-        // WhatsApp notification is sent from backend only - no deeplink
       } else {
-        throw new Error('Form submission failed');
+        // Fallback failed
+        if (formNote) {
+          formNote.textContent = 'Submission failed. Please try again or contact directly.';
+          formNote.style.color = '#b91c1c';
+        }
+        generateCaptcha();
       }
     } catch (err) {
       console.error('Form submission error:', err);
