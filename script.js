@@ -226,9 +226,11 @@
 
       // Try backend server first
       const formData = Object.fromEntries(data.entries());
-      console.log('Sending user data to backend:', formData);
+      console.log('🚀 Starting form submission');
+      console.log('📋 Form data being sent:', formData);
+      console.log('🌐 API endpoint:', 'https://duduivhub-backend-nw5t.onrender.com/api/submit-enquiry');
       
-      const response = await fetch('http://localhost:3000/api/submit-enquiry', {
+      const response = await fetch('https://duduivhub-backend-nw5t.onrender.com/api/submit-enquiry', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -237,9 +239,15 @@
         signal: AbortSignal.timeout(15000) // 15 second timeout
       });
 
+      console.log('📡 Response status:', response.status);
+      console.log('📡 Response ok:', response.ok);
+
       if (response.ok) {
         const result = await response.json();
+        console.log('📥 Backend response received:', result);
+        
         if (result.success) {
+          console.log('✅ Backend confirmed success - showing success to user');
           if (formNote) {
             formNote.textContent = result.message || 'Thank you! We will contact you shortly.';
             formNote.style.color = '#065f46';
@@ -253,9 +261,26 @@
             submitBtn.textContent = 'BOOK NOW';
           }
           return;
+        } else {
+          // Backend explicitly returned failure
+          console.log('❌ Backend returned failure - showing error to user');
+          if (formNote) {
+            formNote.textContent = result.message || 'Notification system error. Please try again.';
+            formNote.style.color = '#b91c1c';
+          }
+          generateCaptcha();
         }
+      } else {
+        // HTTP error - backend unreachable
+        console.log('💥 HTTP error - backend unreachable');
+        if (formNote) {
+          formNote.textContent = 'Server error. Please try again or contact directly.';
+          formNote.style.color = '#b91c1c';
+        }
+        generateCaptcha();
       }
     } catch (error) {
+      console.error('Backend API error:', error);
       console.log('Server not available, falling back to FormSubmit');
     } finally {
       // Always restore button state
