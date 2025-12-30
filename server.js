@@ -38,8 +38,14 @@ async function sendEmail(message) {
       html: `<pre>${message}</pre>`
     });
     
-    console.log('✅ Email sent successfully via Resend. Message ID:', data.id);
-    return true;
+    // Verify Resend API response before claiming success
+    if (data && data.id) {
+      console.log('✅ Email sent successfully via Resend. Message ID:', data.id);
+      return true;
+    } else {
+      console.error('❌ Resend API returned invalid response:', data);
+      return false;
+    }
   } catch (error) {
     console.error('❌ Error sending email via Resend:', error);
     console.error('Resend error details:', {
@@ -90,6 +96,15 @@ app.post('/api/submit-enquiry', async (req, res) => {
       return res.status(500).json({
         success: false,
         message: 'Server configuration error: Email not configured'
+      });
+    }
+
+    // Test Resend API key format
+    if (!process.env.RESEND_API_KEY.startsWith('re_')) {
+      console.error('❌ INVALID RESEND API KEY FORMAT');
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error: Invalid Resend API key format'
       });
     }
 
@@ -192,6 +207,15 @@ app.post("/api/register", async (req, res) => {
       return res.status(500).json({
         success: false,
         message: 'Server configuration error: Email not configured'
+      });
+    }
+
+    // Test Resend API key format
+    if (!process.env.RESEND_API_KEY.startsWith('re_')) {
+      console.error('❌ INVALID RESEND API KEY FORMAT');
+      return res.status(500).json({
+        success: false,
+        message: 'Server configuration error: Invalid Resend API key format'
       });
     }
 
