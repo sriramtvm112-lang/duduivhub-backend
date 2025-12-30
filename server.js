@@ -1,7 +1,7 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const twilio = require('twilio');
 const cors = require('cors');
+const { Resend } = require('resend');
 require('dotenv').config();
 
 const app = express();
@@ -21,37 +21,31 @@ const twilioClient = twilio(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 // Your WhatsApp number (where you want to receive messages)
 const YOUR_WHATSAPP_NUMBER = process.env.MY_WHATSAPP || '+919940764517';
 
-// Gmail SMTP Transporter
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+// Resend Email Client
+const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Email sending function
+// Email sending function via Resend
 async function sendEmail(message) {
   console.log('📧 Email function called with message length:', message.length);
   
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: 'New Trip Enquiry',
-    html: `<pre>${message}</pre>`
-  };
-
   try {
-    console.log('📧 Sending email to:', process.env.EMAIL_USER);
-    const result = await transporter.sendMail(mailOptions);
-    console.log('✅ Email sent successfully, Message ID:', result.messageId);
+    console.log('📧 Sending email via Resend to:', process.env.EMAIL_USER);
+    
+    const data = await resend.emails.send({
+      from: process.env.EMAIL_USER,
+      to: [process.env.EMAIL_USER],
+      subject: 'New Trip Enquiry',
+      html: `<pre>${message}</pre>`
+    });
+    
+    console.log('✅ Email sent successfully via Resend. Message ID:', data.id);
     return true;
   } catch (error) {
-    console.error('❌ Error sending email:', error);
-    console.error('Email error details:', {
-      code: error.code,
+    console.error('❌ Error sending email via Resend:', error);
+    console.error('Resend error details:', {
+      name: error.name,
       message: error.message,
-      command: error.command
+      statusCode: error.statusCode
     });
     return false;
   }
@@ -83,7 +77,7 @@ app.post('/api/submit-enquiry', async (req, res) => {
     console.log('📋 Form data keys:', Object.keys(formData));
     console.log('🔍 Environment check:', {
       EMAIL_USER: !!process.env.EMAIL_USER,
-      EMAIL_PASS: !!process.env.EMAIL_PASS,
+      RESEND_API_KEY: !!process.env.RESEND_API_KEY,
       TWILIO_SID: !!process.env.TWILIO_SID,
       TWILIO_TOKEN: !!process.env.TWILIO_TOKEN,
       TWILIO_WHATSAPP: !!process.env.TWILIO_WHATSAPP,
@@ -91,7 +85,7 @@ app.post('/api/submit-enquiry', async (req, res) => {
     });
 
     // Validate required environment variables
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    if (!process.env.EMAIL_USER || !process.env.RESEND_API_KEY) {
       console.error('❌ MISSING EMAIL CONFIGURATION');
       return res.status(500).json({
         success: false,
@@ -185,7 +179,7 @@ app.post("/api/register", async (req, res) => {
     console.log('📋 Form data keys:', Object.keys(formData));
     console.log('🔍 Environment check:', {
       EMAIL_USER: !!process.env.EMAIL_USER,
-      EMAIL_PASS: !!process.env.EMAIL_PASS,
+      RESEND_API_KEY: !!process.env.RESEND_API_KEY,
       TWILIO_SID: !!process.env.TWILIO_SID,
       TWILIO_TOKEN: !!process.env.TWILIO_TOKEN,
       TWILIO_WHATSAPP: !!process.env.TWILIO_WHATSAPP,
@@ -193,7 +187,7 @@ app.post("/api/register", async (req, res) => {
     });
 
     // Validate required environment variables
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    if (!process.env.EMAIL_USER || !process.env.RESEND_API_KEY) {
       console.error('❌ MISSING EMAIL CONFIGURATION');
       return res.status(500).json({
         success: false,
